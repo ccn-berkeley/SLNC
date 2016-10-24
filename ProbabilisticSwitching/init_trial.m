@@ -1,4 +1,4 @@
-function init_trial(trial)
+function init_trial
 
 global exp;
 

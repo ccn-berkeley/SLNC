@@ -1,4 +1,4 @@
-function pr_boxes(trial)
+function pr_boxes
 
 global exp
 

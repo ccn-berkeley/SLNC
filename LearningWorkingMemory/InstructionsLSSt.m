@@ -105,7 +105,7 @@ acor = 2;
 imaget = SMat(:,:,:,1);
 timing = [2 .2 1 .5];
 it = 0;
-while cor<1 |it<5
+while cor<1 || it<5
 [RT,code,cor]=singleTrial(w,rect,Actions,imaget,acor,timing);
 it = it+1;
 end

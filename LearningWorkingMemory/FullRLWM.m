@@ -52,9 +52,9 @@ try
     % get screen parameters
     Screen('Preference', 'SkipSyncTests',1);
     if debug 
-    screenRect = [0,0,1250,800]; % screen for debugging
+        screenRect = [0,0,1250,800]; % screen for debugging
     else
-    screenRect = []; % full screen
+        screenRect = []; % full screen
     end
     [w, rect] = Screen('OpenWindow', 0, 0,screenRect,32,2);
     HideCursor;	% Hide the mouse cursor

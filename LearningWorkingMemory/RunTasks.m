@@ -78,6 +78,7 @@ if ow
     if strmatch(overwrite,'y')
     elseif strmatch(overwrite,'n')
         disp('Please enter subject # carefully!')
+        subject_id = input('Enter the subject ID # :\n');
         return
     else
         disp('Please answer y or n.');

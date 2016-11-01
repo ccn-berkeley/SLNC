@@ -13,7 +13,7 @@ end
 % When participants gave no response
 if isempty(exp.key)
     drawpict(exp.buffer.no_response);
-    waitkeydown(2 * exp.times.reward);
+    wait(2 * exp.times.reward);
 % Check if participant pressed an allowed key
 elseif exp.key == exp.nkey.le || exp.key == exp.nkey.ri
     % Was the better key pressed? -> Give reward with 75% probability
@@ -24,7 +24,7 @@ elseif exp.key == exp.nkey.le || exp.key == exp.nkey.ri
         elseif exp.key == exp.nkey.ri
             drawpict(exp.buffer.coin_right);
         end
-        waitkeydown(exp.times.reward);
+        wait(exp.times.reward);
     % Was the worse key pressed or better key and bad luck (25%)? -> Give no reward
     else
         if exp.key == exp.nkey.le
@@ -32,7 +32,7 @@ elseif exp.key == exp.nkey.le || exp.key == exp.nkey.ri
         elseif exp.key == exp.nkey.ri
             drawpict(exp.buffer.no_coin_right);
         end
-        waitkeydown(exp.times.reward);
+        wait(exp.times.reward);
     end
 % When participants pressed wrong key
 else

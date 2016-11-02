@@ -19,6 +19,7 @@ exp.buffer.no_coin_left                 = 9;
 exp.buffer.no_coin_right                =12;
 exp.buffer.wrong_key                    =10;
 exp.buffer.no_response                  =11;
+exp.buffer.message                      =15;
 
 %% Load box and coin pics into buffers
 % both boxes

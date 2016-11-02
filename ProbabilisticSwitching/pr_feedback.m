@@ -1,4 +1,4 @@
-function pr_feedback(trial)
+function pr_feedback(version)
 
 global exp
 
@@ -16,8 +16,9 @@ if isempty(exp.key)
     wait(2 * exp.times.reward);
 % Check if participant pressed an allowed key
 elseif exp.key == exp.nkey.le || exp.key == exp.nkey.ri
-    % Was the better key pressed? -> Give reward with 75% probability
-    if exp.key == better_key && rand < exp.win_prob
+    % Was the better key pressed? -> Give reward with 75% probability (in
+    % deterministic version, always give the reward)
+    if exp.key == better_key && (rand < exp.win_prob || strcmp(version, 'deterministic'))
         exp.reward = 1;
         if exp.key == exp.nkey.le
             drawpict(exp.buffer.coin_left);

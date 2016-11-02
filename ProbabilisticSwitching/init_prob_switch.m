@@ -37,7 +37,7 @@ exp.times.box                  =   200;    % How long is the selected box presen
 exp.times.reward               =  1000;
 exp.times.iti                  = ones(1, exp.numb_of_trials.prob_switch);                     % Inter-trial interval [0.3 0.7] with mean 0.5
 while mean(exp.times.iti) > 501 || mean(exp.times.iti) < 499
-    exp.times.iti = 300 + 400 * rand(1, exp.numb_of_trials.prob_switch);
+    exp.times.iti = 300 + 400 * rand(1, exp.numb_of_trials.prob_switch + 50);
 end
 
 % Set keys to select arrows and stimuli

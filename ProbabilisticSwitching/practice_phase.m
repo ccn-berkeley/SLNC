@@ -1,98 +1,118 @@
 function trial = practice_phase
 
-%%% Phase 1: Left box = good; chose left, left, right, left, right;
-trial = 1;
-%"Try to collect as many magic coins as you can!"
-%"The magic coins are hidden in two boxes."
-%"Let's see if the left box has the magic coin!"
-%"Can you open the left box? (left arrow key)"
-update_coin_counter(trial)
-choose_left_box_get_reward(trial);
-trial = trial + 1;
-%"Hurray, the left box had a magic coin!"
-%"The left box seems to be the magic box!"
-%"Let's check if the left box has another coin!"
-%"Can you open the left box again?"
-choose_left_box_get_reward(trial);
-trial = trial + 1;
-%"Hurray, the left box had another magic coin!"
-%"The left box must be the magic box!"
-%"Let's now look into the right box!"
-%"Can you open the right box? (right arrow key)?"
-choose_right_box_no_reward(trial);
-trial = trial + 1;
-%"The right box had no magic coin..."
-%"The right box is not the magic box..."
-%"Let's see if the left box has more coins!"
-%"Can you open the left box?"
-choose_left_box_get_reward(trial);
-trial = trial + 1;
-%"Hurray, the left box had another coin!"
-%"The left box is magical!"
-%"Let's look into the right box again."
-choose_right_box_no_reward(trial);
-trial = trial + 1;
-%"The right box still has no coins..."
-%"The right box is not magical..."
+global exp
 
-%%% Phase 2: Right box = good; chose right, left, left, right;
-%"You are pretty good at finding magical coins already!"
-%"Put pay attention!"
-%"Sometimes, the magical box switches sides!"
-%"Maybe it has switched sides now!"
-%"Let's check this. Can you open to right box to see if it has a coin?"
-choose_right_box_get_reward(trial);
-trial = trial + 1;
-%"Hurray, the right box had a coin!"
-%"The right box must be the magical box!"
-%"What is inside the left box now?"
-%"Can you open the left box?"
-choose_left_box_no_reward(trial);
-trial = trial + 1;
-%"The left box had no coin..."
-%"It is not the magical box any more..."
-%"Let's try the left box again!"
-choose_left_box_no_reward(trial);
-trial = trial + 1;
-%"The left box had no coin..."
-%"It is not the magical box any more..."
-%"Let's try to get another coin now!"
-%"Which box is magical box? Which box should we pick?"
-choose_right_box_get_reward(trial);
-trial = trial + 1;
-%"Hurray, the right box is the magical box and had another coin!"
+%% Instructions
+clearpict(exp.buffer.message)
+preparestring('GAME OF MAGICAL COINS', exp.buffer.message, 0, 100)
+preparestring('Try to collect all the magical coins!', exp.buffer.message, 0, -200)
+drawpict(exp.buffer.message)
+waitkeydown(inf)
 
-%%% Phase 3: Introduce stochasticity; right box = good; choose right, right, left, right, right
-%"The magical box is always one of the two boxes."
-%"But sometimes, even the magical box has no magical coin!"
-%"Let's see if the magical right box has a coin this time!"
-choose_right_box_no_reward(trial);
-trial = trial + 1;
-%"Oh no, the magical right box had no magical coin this time!"
-%"Let's try again!"
-choose_right_box_get_reward(trial);
-trial = trial + 1;
-%"Hurray, the magical right box had a coin this time!"
-%"Let's check the left box now."
-choose_left_box_no_reward(trial);
-trial = trial + 1;
-%"The left box had no coin."
-%"Let's check the right box again!"
-choose_right_box_get_reward(trial);
-trial = trial + 1;
-%"Hurray, the right box had a coin!"
-%"Let's try again!
-choose_right_box_no_reward(trial);
-trial = trial + 1;
-%"Oh no, the magical right box had no magical coin this time!"
-%"Let's try again!"
-choose_right_box_get_reward(trial);
-trial = trial + 1;
-%"Hurray, the right box had a coin!"
+clearpict(exp.buffer.message)
+preparestring('In this game, try to collect all the magical coins!', exp.buffer.message, 0, 300)
+preparestring('The magical coins are hidden in magical boxes, like this one:', exp.buffer.message, 0, 250)
+loadpict('stimuli/box.png', exp.buffer.message, 50, 0);
+drawpict(exp.buffer.message)
+waitkeydown(inf)
+preparestring('Can you open the box to see if it has a coin?', exp.buffer.message, 0, -200)
+preparestring('Press any key to open the box!', exp.buffer.message, 0, -250)
+drawpict(exp.buffer.message)
+waitkeydown(inf)
+loadpict('stimuli/box_coin.png', exp.buffer.message, 50, 0);
+drawpict(exp.buffer.message)
+waitkeydown(inf)
+preparestring('This box is magical! It contains a magical coin!', exp.buffer.message, 0, -300)
+drawpict(exp.buffer.message)
+waitkeydown(inf)
 
-%"Remember, try to find as many magical coins as you can!"
-%"Magical coins are only hidden in the magical box!"
-%"Sometimes, the magical box switches sides!"
-%"Even the magical box does not always have a coin!"
-
+%% Practice phase
+% Phase 1: Left box is magical; deterministic; 7 trials
+clearpict(exp.buffer.message)
+preparestring('In the game, there will be two boxes, but only one is magical.', exp.buffer.message, 0, 200)
+preparestring('Try finding the magical box. The left arrow key opens the left box.', exp.buffer.message, 0, 150)
+preparestring('And the right arrow key opens the right box.', exp.buffer.message, 0, 100)
+drawpict(exp.buffer.message)
+waitkeydown(inf)
+drawpict(exp.buffer.fixation);
+waitkeydown(inf);
+for trial = 1:exp.numb_of_trials.practice_left
+    exp.better_box_left = 1;                                                % Left box is magical
+    init_trial;                                                             % Initialize truth values
+    
+    pr_boxes;                                                               % Show boxes and let participant pick one
+    pr_feedback('deterministic');                                           % Show reward or not
+    
+    rec_trial(trial);                                                       % Record trial data and save to file
+    
+    update_coin_counter(trial);
 end
+start_trial = trial + 1;
+
+% Phase 2: Right box magical (det.; 5 trials); then left box (det.; 5 trials)
+clearpict(exp.buffer.message)
+preparestring('Sometimes, the magical box switches sides!', exp.buffer.message, 0, 200)
+preparestring('Try finding the magical box again!', exp.buffer.message, 0, 150)
+drawpict(exp.buffer.message)
+waitkeydown(inf)
+for trial = start_trial:(start_trial + exp.numb_of_trials.practice_switch1)
+    exp.better_box_left = 0;                                                % Left box is magical
+    init_trial;                                                             % Initialize truth values
+    
+    pr_boxes;                                                               % Show boxes and let participant pick one
+    pr_feedback('deterministic');                                           % Show reward or not
+    
+    rec_trial(trial);                                                       % Record trial data and save to file
+    
+    update_coin_counter(trial);
+end
+start_trial = trial + 1;
+for trial = start_trial:(start_trial + exp.numb_of_trials.practice_switch2)
+    exp.better_box_left = 1;                                                % Left box is magical
+    init_trial;                                                             % Initialize truth values
+    
+    pr_boxes;                                                               % Show boxes and let participant pick one
+    pr_feedback('deterministic');                                           % Show reward or not
+    
+    rec_trial(trial);                                                       % Record trial data and save to file
+    
+    update_coin_counter(trial);
+end
+start_trial = trial + 1;
+
+% Phase 3: Add stochastisity (identical to the true task)
+clearpict(exp.buffer.message)
+preparestring('Sometimes, even the magical box does not have a coin,', exp.buffer.message, 0, 200)
+preparestring('even though it is magical. This makes it harder to find the magical box!', exp.buffer.message, 0, 150)
+preparestring('Can you still find the magical box?', exp.buffer.message, 0, 100)
+drawpict(exp.buffer.message)
+waitkeydown(inf)
+for trial = start_trial:(start_trial + exp.numb_of_trials.practice_stochastic1)
+    exp.better_box_left = 1;                                                % Left box is magical
+    init_trial;                                                             % Initialize truth values
+    
+    pr_boxes;                                                               % Show boxes and let participant pick one
+    pr_feedback('probabilistic');                                           % Show reward or not
+    
+    rec_trial(trial);                                                       % Record trial data and save to file
+    
+    update_coin_counter(trial);
+end
+start_trial = trial + 1;
+for trial = start_trial:(start_trial + exp.numb_of_trials.practice_stochastic2)
+    exp.better_box_left = 0;                                                % Left box is magical
+    init_trial;                                                             % Initialize truth values
+    
+    pr_boxes;                                                               % Show boxes and let participant pick one
+    pr_feedback('probabilistic');                                           % Show reward or not
+    
+    rec_trial(trial);                                                       % Record trial data and save to file
+    
+    update_coin_counter(trial);
+end
+
+%% Instructions for the real task
+clearpict(exp.buffer.message)
+preparestring('Try your best to find as many coins as you can!', exp.buffer.message, 0, 100)
+drawpict(exp.buffer.message)
+waitkeydown(inf)

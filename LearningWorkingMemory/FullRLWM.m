@@ -29,9 +29,9 @@ Entrees.stimuli=stimuli;
 Entrees.rules=rules;
 dataT{length(blocks)+1}=Entrees;
 
-text{1} =  'Block ';
-text{2} = 'Take some time to identify the images for this block.';
-text{3} = '[Press a key to continue.]';
+text{1} = 'Block ';
+text{2} = 'You will now see the images for the next block.';
+text{3} = '[Press space to continue.]';
 text{4} = '';
 text{5} = '0';
 text{6} = 'End of block ';
@@ -129,10 +129,12 @@ try
         Screen('Flip', w);
         
         WaitSecs(.2);
+        RestrictKeysForKbCheck(32);
         kdown=0;
         while kdown==0;
             kdown=KbCheck;
         end
+        RestrictKeysForKbCheck([]);
         
         Screen('FillRect', w, 0)
         for tt=1:nS
@@ -201,9 +203,11 @@ try
         Screen('Flip', w);kdown=0;
         
         
+        RestrictKeysForKbCheck(32);
         while kdown==0;
             kdown=KbCheck;
         end
+        RestrictKeysForKbCheck([]);
         Screen('FillRect', w, 0)
         Screen('Flip', w);
         WaitSecs(2);

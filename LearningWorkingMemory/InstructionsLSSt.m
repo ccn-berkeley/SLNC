@@ -25,7 +25,7 @@ Screen('TextSize', w, 24 );
 Screen('TextFont',w,'Arial');
 Screen('TextStyle',wPtr,0);
 Screen('TextColor',wPtr,[255 255 255]);
-beginningText1 = 'Working Memory Reinforcement Learning Task';
+beginningText1 = 'THE BUG TASK';
 DrawFormattedText(wPtr,beginningText1,'center','center');
 Screen(wPtr, 'Flip');
 WaitSecs(3);
@@ -35,15 +35,17 @@ done = 1;
 while done
 % %****BEGINNING OF INSTRUCTIONS****
 % %Instructions 1
-anykey = 'Press any key to continue.';
+anykey = 'Press space to continue.';
 %% Instructions1
 text{1} = 'In this experiment, you will see an image on the screen.';
-text{2} = 'Press a key to see an example on the next screen.';
+text{2} = 'Press space to see an example on the next screen.';
 
 textI = [text{1},'\n\n\n',text{2},'\n\n\n\n\n',anykey];
 DrawFormattedText(wPtr,textI,'center','center');
 Screen(wPtr, 'Flip');
-KbWait([],3); %Waits for keyboard(any) press
+RestrictKeysForKbCheck(KbName('space'));
+KbWait([],3); %Waits for keyboard(space) press
+RestrictKeysForKbCheck([KbName('J'), KbName('K'), KbName('L')]);
 
 imaget = SMat(:,:,:,1);
 timing = [3 0 0 .5];
@@ -61,10 +63,12 @@ Screen('TextSize', w, 24 );
 DrawFormattedText(wPtr,textI,'center','center')
 Screen(wPtr, 'Flip');
 
+RestrictKeysForKbCheck(KbName('space'));
 KbWait([],3); %Waits for keyboard(any) press
 
 imaget = SMat(:,:,:,2);
 timing = [5 0 0 .5];
+RestrictKeysForKbCheck([KbName('J'), KbName('K'), KbName('L')]);
 singleTrial(w,rect,Actions,imaget,acor,timing);
 
 
@@ -78,10 +82,12 @@ Screen('TextSize', w, 24 );
 DrawFormattedText(wPtr,textI,'center','center')
 Screen(wPtr, 'Flip');
 
+RestrictKeysForKbCheck(KbName('space'));
 KbWait([],3); %Waits for keyboard(any) press
 
 imaget = SMat(:,:,:,2);
 timing = [2 0 0 .5];
+RestrictKeysForKbCheck([KbName('J'), KbName('K'), KbName('L')]);
 singleTrial(w,rect,Actions,imaget,acor,timing);
 
 
@@ -89,16 +95,18 @@ singleTrial(w,rect,Actions,imaget,acor,timing);
 
 
 %% Instructions 4
-text{1} = 'For each image, there is only one key that will win you points (1 / 1).';
-text{2} = 'If you press any other key when you see that image, you will not receive points (0 / 1).';
-text{3} = 'On the next screen, try finding the winning key!';
+text{1} = 'For each image, there is only one key that will win you points.';
+text{2} = 'If you press any other key when you see that image, you will not receive points.';
+text{3} = 'On the next screen, try to find the winning key!';
 
 textI = [text{1},'\n\n\n',text{2},'\n\n\n',text{3},'\n\n\n\n\n\n\n',anykey];
 Screen('TextSize', w, 24 );
 DrawFormattedText(wPtr,textI,'center','center')
 Screen(wPtr, 'Flip');
 
+RestrictKeysForKbCheck(KbName('space'));
 KbWait([],3); %Waits for keyboard(any) press
+RestrictKeysForKbCheck([KbName('J'), KbName('K'), KbName('L')]);
 
 cor = 0;
 acor = 2;
@@ -112,14 +120,16 @@ end
 
 %% Instructions 5
 text{1} = 'The winning key for each image can be different.';
-text{2} = 'On the next screen, try finding the winning key for the other image!';
+text{2} = 'On the next screen, try to find the winning key for the other image!';
 
 textI = [text{1},'\n\n\n',text{2},'\n\n\n\n\n\n\n',anykey];
 Screen('TextSize', w, 24 );
 DrawFormattedText(wPtr,textI,'center','center')
 Screen(wPtr, 'Flip');
 
+RestrictKeysForKbCheck(KbName('space'));
 KbWait([],3); %Waits for keyboard(any) press
+RestrictKeysForKbCheck([KbName('J'), KbName('K'), KbName('L')]);
 
 cor = 0;
 imaget = SMat(:,:,:,2);
@@ -135,14 +145,16 @@ end
 %% Instructions 6
 text{1} = 'On each trial, try to press the winning key as quickly as possible.';
 text{2} = 'If you do not choose quickly enough, you will not win points on this trial';
-text{3} = 'On the next screen, try finding the winning keys for each image!';
+text{3} = 'On the next screen, try to find the winning keys for each image!';
 
 textI = [text{1},'\n\n\n',text{2},'\n\n\n',text{3},'\n\n\n\n\n\n\n',anykey];
 Screen('TextSize', w, 24 );
 DrawFormattedText(wPtr,textI,'center','center')
 Screen(wPtr, 'Flip');
 
+RestrictKeysForKbCheck(KbName('space'));
 KbWait([],3); %Waits for keyboard(any) press
+RestrictKeysForKbCheck([KbName('J'), KbName('K'), KbName('L')]);
 
 timing = [2 .2 1 .5];
 for iter = 1:10
@@ -161,12 +173,14 @@ textI = [text{1},'\n\n\n',text{2},'\n\n\n',text{3},'\n\n\n\n\n\n\n',anykey];
 Screen('TextSize', w, 24 );
 DrawFormattedText(wPtr,textI,'center','center')
 Screen(wPtr, 'Flip');
+
+RestrictKeysForKbCheck([KbName('space'), KbName('R')]);
 KbWait([],3); %Waits for keyboard(any) press
 
 %% Propose to repeat instructions
 
 text{1} = 'Ready to practice?';
-text{2} = 'If not, you can press R to read the instructions again.';
+text{2} = 'If not, you can press R to go over the instructions again.';
 text{3} = 'Otherwise, you can start the game by pressing any other key!';
 
 
@@ -201,3 +215,4 @@ if debug
 %Screen('CloseAll');
 end
 %****END OF INSTRUCTIONS****
+RestrictKeysForKbCheck([KbName('J'), KbName('K'), KbName('L')]);

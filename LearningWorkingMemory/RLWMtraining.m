@@ -23,9 +23,9 @@ nA=3;
 % open the screen
 % ---------------
 
-text{1} =  'Block ';
-text{2} = 'Take some time to identify the images for this block.';
-text{3} = '[Press a key to continue.]';
+text{1} = 'Block ';
+text{2} = 'You will now see the images for the next block.';
+text{3} = '[Press space to continue.]';
 text{4} = '';
 text{5} = '0';
 text{6} = 'End of block ';
@@ -78,11 +78,13 @@ try
     DrawFormattedText(w,textI,'center','center');
     Screen('Flip', w);
 
+    RestrictKeysForKbCheck(32);
     WaitSecs(.2);
     kdown=0;
     while kdown==0;
         kdown=KbCheck;
     end
+    RestrictKeysForKbCheck([]);
 
     Screen('FillRect', w, 0)
     for tt=1:nS
@@ -153,14 +155,19 @@ try
     Screen('TextFont',w,'Arial');
     Screen('TextSize', w, 32 );
     Screen('FillRect', w,0)
-    textI = ['End of practice! \n\n\n\n\n\n\n',...
+    textI = ['End of practice! \n\n\n'...
+        'The real game starts now! \n\n\n'...
+        'You can always take breaks between the blocks if you want! \n\n\n'...
+        'The task might be hard at some point - just try your best!',...
         text{3}];
     DrawFormattedText(w,textI,'center','center');
 
     Screen('Flip', w);kdown=0;
+    RestrictKeysForKbCheck(32);
     while kdown==0;
         kdown=KbCheck;
     end
+    RestrictKeysForKbCheck([]);
     Screen('FillRect', w, 0);
     Screen('Flip', w);
     WaitSecs(2);

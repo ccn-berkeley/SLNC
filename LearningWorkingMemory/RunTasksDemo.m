@@ -7,6 +7,7 @@
 %%%% Main Script for running tasks
 
 % use nice pics as reward; or write "correct!" / "try again!"
+% give feedback on the first few training trials: "well done!"?
 
 % clear all variables
 clear all

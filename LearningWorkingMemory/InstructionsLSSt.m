@@ -56,7 +56,7 @@ singleTrial(w,rect,Actions,imaget,acor,timing);
 %% Instructions 2
 text{1} = 'Each time you see an image, you need to press a key:';
 text{2} = 'you can see the three keys drawn under each image.';
-text{3} = 'On the next screen, use your fingers to press one of the three keys.';
+text{3} = 'On the next screen, use your fingers to press one of the three keys with stickers.';
 
 textI = [text{1},'\n\n\n',text{2},'\n\n\n',text{3},'\n\n\n\n\n\n\n',anykey];
 Screen('TextSize', w, 24 );
@@ -181,7 +181,7 @@ KbWait([],3); %Waits for keyboard(any) press
 
 text{1} = 'Ready to practice?';
 text{2} = 'If not, you can press R to go over the instructions again.';
-text{3} = 'Otherwise, you can start the game by pressing any other key!';
+text{3} = 'Otherwise, you can start the game by pressing space!';
 
 
 textI = [text{1},'\n\n\n',text{2},'\n\n\n',text{3}];

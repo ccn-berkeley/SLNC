@@ -104,7 +104,7 @@ try
         Type=stSets(b);%%%%Famille d'images
         % load stimuli and store them in matrix SMat for display
         for i=1:nS
-            load(['imagesRLWM\images',num2str(Type),'\image',num2str(sordre(i))]);%%%load des stimuli
+            load(['imagesRLWM\images',num2str(Type),'\image',num2str(sordre(i))]);%%%load stimuli
             SMat(:,:,:,i)=X;
         end
         
@@ -137,6 +137,7 @@ try
         RestrictKeysForKbCheck([]);
         
         Screen('FillRect', w, 0)
+        DrawFormattedText(w, ['\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n', text{3}], 'center', 'center');
         for tt=1:nS
             Screen(w,'PutImage',SMat(:,:,:,tt),boitesPresentation(tt,:))
         end

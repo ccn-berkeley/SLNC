@@ -8,7 +8,7 @@ exp.numb_of_buffers = 15;
 addpath(genpath('C:\Users\maria\MEGAsync\GSN\Wunderlich Lab\TrainingPlanningProject\Cogent2000v1.32'))
 addpath(genpath('C:\Cogent2000v1.33'));
 % Configure display & keyboard
-config_display(0, 3, [1 1 1], [0 0 0], 'Helvetica', 40, exp.numb_of_buffers, 0);   % Configure display (0 = window mode; 5 = 1280x1024; [1 1 1] = white background; grey text; fontname; fontsize; nbuffers)
+config_display(1, 3, [1 1 1], [0 0 0], 'Helvetica', 40, exp.numb_of_buffers, 0);   % Configure display (0 = window mode; 5 = 1280x1024; [1 1 1] = white background; grey text; fontname; fontsize; nbuffers)
 config_keyboard;
 
 %% Set Variables

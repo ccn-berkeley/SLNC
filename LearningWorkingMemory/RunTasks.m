@@ -12,16 +12,6 @@ clear all
 clc
 
 %% check that all done well
-% internet = input('Experimenter: is internet disconnected? (y/n) :\n','s');
-% if strmatch(internet,'y')
-% elseif strmatch(internet,'n')
-%     disp('Please disconnect internet before re-starting the experiment');
-%     return
-% else
-%     disp('Please answer y or n.');
-%     return    
-% end
-
 programs = input('Experimenter: are all other programs turned off? (y/n) :\n','s');
 if strmatch(programs,'y')
 elseif strmatch(programs,'n')
@@ -31,16 +21,6 @@ else
     disp('Please answer y or n.');
     return
 end
-
-% external = input('Experimenter: are external devices (e.g. memory sticks) disconnected? (y/n) :\n','s');
-% if strmatch(external,'y')
-% elseif strmatch(external,'n')
-%     disp('Please disconnect external devices before re-starting the experiment')
-%     return
-% else
-%     disp('Please answer y or n.');
-%     return
-% end
 
 outlet = input('Experimenter: is the laptop plugged into an outlet? (y/n) :\n','s');
 if strmatch(outlet,'y')

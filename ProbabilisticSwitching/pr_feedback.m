@@ -16,9 +16,13 @@ if isempty(exp.key)
     wait(2 * exp.times.reward);
 % Check if participant pressed an allowed key
 elseif exp.key == exp.nkey.le || exp.key == exp.nkey.ri
-    % Was the better key pressed? -> Give reward with 75% probability (in
-    % deterministic version, always give the reward)
-    if exp.key == better_key && (rand < exp.win_prob || strcmp(version, 'deterministic'))
+    % Was the better key pressed (= correct box selected)? -> safe this
+    if exp.key == better_key
+        exp.right_box_chosen_counter = exp.right_box_chosen_counter + 1;
+    end
+    %  Give reward as predetermined (or always in deterministic version)
+    if exp.key == better_key && (exp.coin_win(exp.right_box_chosen_counter) ...
+            || strcmp(version, 'deterministic'))
         exp.reward = 1;
         if exp.key == exp.nkey.le
             drawpict(exp.buffer.coin_left);
@@ -26,7 +30,7 @@ elseif exp.key == exp.nkey.le || exp.key == exp.nkey.ri
             drawpict(exp.buffer.coin_right);
         end
         wait(exp.times.reward);
-    % Was the worse key pressed or better key and bad luck (25%)? -> Give no reward
+    % Was the worse key pressed or better key and bad luck? -> Give no reward
     else
         if exp.key == exp.nkey.le
             drawpict(exp.buffer.no_coin_left);

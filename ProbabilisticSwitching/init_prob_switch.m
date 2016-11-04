@@ -19,11 +19,23 @@ exp.results_filepath = exp.wdir;
 exp.PROBSWITCHdata.switch_trial = [];
 exp.PROBSWITCHdata.reward = [];
 
-% Load one of the 10 run_length randomizations (subj1->run_length1;
-% subj2->run_length2, ..., subj10->run_length0; subj11->run_length1, ...)
-run_length_filename = sprintf('Prerandomized sequences/run_length%i', mod(exp.subj, 10));
+% Load run_length and coin_win randomizations (s1->r1; s2->r2, ..., s11->r1, s12->r12, ...)
+run_length_filename = sprintf('Prerandomized sequences/run_length%i', ...
+    mod(str2num(exp.subj), 10));
 load(run_length_filename);
 exp.run_length = run_length;
+coin_win_filename = sprintf('Prerandomized sequences/coin_win%i', ...
+    mod(str2num(exp.subj), 10));
+load(coin_win_filename);
+exp.coin_win = coin_win;
+exp.right_box_chosen_counter = 1;
+% Set number of trials (practice and task)
+exp.numb_of_trials.prob_switch = 150;  % 100 trials take ~4 minutes
+exp.numb_of_trials.practice_left = 7;  % Instructions & practice take ~90sec
+exp.numb_of_trials.practice_switch1 = 6;
+exp.numb_of_trials.practice_switch2 = 7;
+exp.numb_of_trials.practice_stochastic1 = 12;
+exp.numb_of_trials.practice_stochastic2 = 8;
 
 % Keep track of which run we are currently at; start at 1
 exp.run = 1;

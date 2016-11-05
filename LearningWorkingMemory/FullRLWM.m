@@ -86,7 +86,7 @@ try
     if debug
         torun = [1 length(blocks)];
     else
-        torun = [1:length(blocks)];
+        torun = [1:4];%length(blocks)];
     end
     
        

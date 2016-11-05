@@ -57,6 +57,10 @@ start_trial = trial + 1;
 
 % Phase 2: Right box magical (det.; 5 trials); then left box (det.; 5 trials)
 clearpict(exp.buffer.message)
+preparestring('Do you have any questions?', exp.buffer.message, 0, 250)
+drawpict(exp.buffer.message)
+wait(300);
+waitkeydown(inf)
 preparestring('Sometimes, the magical box switches sides!', exp.buffer.message, 0, 200)
 preparestring('Try finding the magical box again!', exp.buffer.message, 0, 150)
 drawpict(exp.buffer.message)
@@ -89,6 +93,10 @@ start_trial = trial + 1;
 
 % Phase 3: Add stochastisity (identical to the true task)
 clearpict(exp.buffer.message)
+preparestring('Do you have any questions?', exp.buffer.message, 0, 250)
+drawpict(exp.buffer.message)
+wait(300);
+waitkeydown(inf)
 preparestring('Sometimes, even the magical box does not have a coin.', exp.buffer.message, 0, 200)
 preparestring('This makes it harder to find it.', exp.buffer.message, 0, 150)
 preparestring('Can you still find the magical box?', exp.buffer.message, 0, 100)
@@ -121,6 +129,10 @@ end
 
 %% Instructions for the real task
 clearpict(exp.buffer.message)
+preparestring('Do you have any questions?', exp.buffer.message, 0, 200)
+drawpict(exp.buffer.message)
+wait(300);
+waitkeydown(inf)
 preparestring('Try your best to find as many coins as you can!', exp.buffer.message, 0, 100)
 drawpict(exp.buffer.message)
 wait(300);

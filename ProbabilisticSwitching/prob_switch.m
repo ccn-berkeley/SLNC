@@ -9,7 +9,7 @@ global exp
 % versus absence from shift?
 
 %% Define variables here during testing
-exp.subj = input('Subject ID: \n', 's');
+exp.subj = input('Subject ID: \n\n', 's');
 
 %% Run the task
 init_prob_switch;

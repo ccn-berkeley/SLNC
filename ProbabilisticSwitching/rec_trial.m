@@ -25,5 +25,5 @@ exp.PROBSWITCHdata.end_time_h = end_clock(4);
 exp.PROBSWITCHdata.end_time_m = end_clock(5);
 
 %% Save results to file
-result_file_name = [exp.results_filepath, sprintf('/Results/PROBSWITCH_%03i.mat', exp.subj)];
+result_file_name = [exp.results_filepath, sprintf('/Results/PROBSWITCH_%s.mat', exp.subj)];
 save(result_file_name, 'exp');

@@ -25,7 +25,7 @@ Screen('TextSize', w, 24 );
 Screen('TextFont',w,'Arial');
 Screen('TextStyle',wPtr,0);
 Screen('TextColor',wPtr,[255 255 255]);
-beginningText1 = 'THE BUG TASK';
+beginningText1 = 'THE LEARNING TASK';
 DrawFormattedText(wPtr,beginningText1,'center','center');
 Screen(wPtr, 'Flip');
 WaitSecs(3);
